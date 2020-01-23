@@ -1,0 +1,99 @@
+@import './_vars.scss';
+@import './_fonts.scss';
+@import './_mixins.scss';
+@import './_media.scss';
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.container {
+    max-width: 1600px;
+    padding: 0 1.5rem;
+    margin: 0 auto;
+}
+
+html {
+    font-size: 10px;
+}
+
+// HEADER
+
+.header__content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 5.3rem;
+}
+
+// HEADER MENU
+
+.header__menu {
+    display: flex;
+    align-items: center;
+    width: 3.1rem;
+    height: 2.2rem;
+    cursor: pointer;
+    margin-right: 0.7rem;
+    .menu__icon {
+        width: 3.1rem;
+        height: 0.3rem;
+        background: $purple-dark;
+        position: relative;
+        transition: all 0.1s ease-in;
+    }
+    .menu__icon::before {
+        @include menu(10px);
+        transition: all 0.4s ease-in;
+    }
+    .menu__icon::after {
+        @include menu(-10px);
+        transition: all 0.4s ease-in;
+    }
+    .menu__icon_active {
+        background: transparent;
+    }
+    .menu__icon_active::before {
+        transition: all 0.4s ease-in;
+        transform: rotate(405deg);
+        top: 0;
+    }
+    .menu__icon_active::after {        
+        transition: all 0.4s ease-in;
+        transform: rotate(-405deg);
+        top: 0;
+    }
+}
+
+// HEADER LOGO
+
+.header__logo-title {
+    font-family: 'Raleway', sans-serif;
+    font-size: 4.8rem;
+    text-transform: uppercase;
+    color: $purple-dark;
+    border: 6px solid $purple-dark;
+    padding: 0 1rem;
+}
+
+// HEADER SEARCH
+
+.header__search-icon {
+    fill: $purple-dark;
+    cursor: pointer;
+    &:hover {
+        fill: $purple-light;
+    }
+}
+
+// HEADER NAV
+
+.header__nav {
+    display: none;
+}
+
+.header__nav_active {
+    display: block;
+}

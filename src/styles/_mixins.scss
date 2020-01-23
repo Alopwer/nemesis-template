@@ -1,0 +1,10 @@
+@mixin menu($top) {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: $top;
+    display: block;
+    width: 3.1rem;
+    height: 0.3rem;
+    background: $purple-dark;
+}
