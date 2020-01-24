@@ -16,7 +16,12 @@
 }
 
 html {
-    font-size: 10px;
+    font-size: 7px;
+    @include parentFont;
+}
+
+.lock {
+    overflow: hidden;
 }
 
 // HEADER
@@ -25,7 +30,13 @@ html {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding-top: 5.3rem;
+    padding-top: 2rem;
+    @include md {
+        padding-top: 6rem
+    }
+    @include lg {
+        padding-top: 10.3rem
+    }
 }
 
 // HEADER MENU
@@ -35,22 +46,21 @@ html {
     align-items: center;
     width: 3.1rem;
     height: 2.2rem;
-    cursor: pointer;
     margin-right: 0.7rem;
+    cursor: pointer;
     .menu__icon {
+        z-index: 5;
         width: 3.1rem;
         height: 0.3rem;
         background: $purple-dark;
         position: relative;
-        transition: all 0.1s ease-in;
+        transition: all 0.5s ease-in;
     }
     .menu__icon::before {
         @include menu(10px);
-        transition: all 0.4s ease-in;
     }
     .menu__icon::after {
         @include menu(-10px);
-        transition: all 0.4s ease-in;
     }
     .menu__icon_active {
         background: transparent;
@@ -59,11 +69,13 @@ html {
         transition: all 0.4s ease-in;
         transform: rotate(405deg);
         top: 0;
+        background: white;
     }
     .menu__icon_active::after {        
         transition: all 0.4s ease-in;
         transform: rotate(-405deg);
         top: 0;
+        background: white;
     }
 }
 
@@ -82,6 +94,8 @@ html {
 
 .header__search-icon {
     fill: $purple-dark;
+    width: 4rem;
+    height: 4rem;
     cursor: pointer;
     &:hover {
         fill: $purple-light;
@@ -91,9 +105,31 @@ html {
 // HEADER NAV
 
 .header__nav {
-    display: none;
+    position: fixed;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    transition: all 0.3s linear;
+    background: $purple-dark;
+}
+.header__nav_active {
+    left: 0;
 }
 
-.header__nav_active {
-    display: block;
+.header__nav-list {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    list-style: none;
+    .header__nav-item {
+        font-size: 2.5rem;
+        font-family: 'Raleway';
+    }
+    .header__nav-link {
+        color: white;
+        text-decoration: none;
+    }
 }
