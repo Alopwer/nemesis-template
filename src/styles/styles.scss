@@ -10,16 +10,19 @@
 }
 
 .container {
-    max-width: 1600px;
-    padding: 0 1.5rem;
+    max-width: 1532px;
+    padding: 0 16px;
     margin: 0 auto;
 }
 
 html {
-    font-size: 7px;
+    font-size: 6px;
     @include parentFont;
 }
 
+a {
+    text-decoration: none;
+}
 .lock {
     overflow: hidden;
 }
@@ -30,13 +33,7 @@ html {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding-top: 2rem;
-    @include md {
-        padding-top: 6rem
-    }
-    @include lg {
-        padding-top: 10.3rem
-    }
+    padding: 6.4rem 0;
 }
 
 // HEADER MENU
@@ -44,14 +41,14 @@ html {
 .header__menu {
     display: flex;
     align-items: center;
-    width: 3.1rem;
+    width: 3.3rem;
     height: 2.2rem;
-    margin-right: 0.7rem;
+    margin-right: 7px;
+    z-index: 2;
     cursor: pointer;
     .menu__icon {
-        z-index: 5;
-        width: 3.1rem;
-        height: 0.3rem;
+        width: 100%;
+        height: 2.5px;
         background: $purple-dark;
         position: relative;
         transition: all 0.5s ease-in;
@@ -65,17 +62,11 @@ html {
     .menu__icon_active {
         background: transparent;
     }
-    .menu__icon_active::before {
-        transition: all 0.4s ease-in;
-        transform: rotate(405deg);
-        top: 0;
-        background: white;
+    .menu__icon_active::before {        
+        @include menuActive(405deg);
     }
     .menu__icon_active::after {        
-        transition: all 0.4s ease-in;
-        transform: rotate(-405deg);
-        top: 0;
-        background: white;
+        @include menuActive(-405deg);
     }
 }
 
@@ -86,16 +77,19 @@ html {
     font-size: 4.8rem;
     text-transform: uppercase;
     color: $purple-dark;
-    border: 6px solid $purple-dark;
+    border: 4px solid $purple-dark;
     padding: 0 1rem;
+    @include lg {
+        border: 6px solid $purple-dark;
+    }
 }
 
 // HEADER SEARCH
 
 .header__search-icon {
     fill: $purple-dark;
-    width: 4rem;
-    height: 4rem;
+    width: 3.8rem;
+    height: 3.8rem;
     cursor: pointer;
     &:hover {
         fill: $purple-light;
@@ -106,6 +100,7 @@ html {
 
 .header__nav {
     position: fixed;
+    z-index: 1;
     top: 0;
     left: -100%;
     width: 100%;
@@ -122,14 +117,106 @@ html {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    align-items: center;
     list-style: none;
     .header__nav-item {
-        font-size: 2.5rem;
+        font-size: 4rem;
         font-family: 'Raleway';
+        text-align: center;
     }
     .header__nav-link {
+        display: inline-block;
+        position: relative;
         color: white;
-        text-decoration: none;
+        padding: 0 2rem;
+        &:after {
+            content: '';
+            display: block;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            height: 3px;
+            width: 0%;
+            background: white;
+            border-radius: 3px;
+            transition: .35s ease;
+        }
+        &:hover:after {
+            width: 100%;
+        }
+    }
+}
+
+// INTRO
+
+.intro { 
+    background: #f0f0f0;
+    background-image: url('../assets/images/header.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    position: relative;
+    @include xlMid {
+        background-size: contain;
+        background-position: right;
+    }
+    &:after {
+        @include xl {
+            display: block;
+            content: '';
+            width: 27.7rem;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            right: 0;
+            background: $purple-dark;
+            background-size: cover;
+            background-position: right;
+            background-repeat: no-repeat;
+        }
+    }
+}
+
+.intro__content {
+    padding: 22.1rem 0;
+}
+
+.intro__modal {
+    padding: 6rem 6rem 7.4rem;
+    margin: 0 auto;
+    @include sm {
+        margin: 0;
+        width: 73.5rem;
+    }
+    color: white;
+    font-family: 'Raleway';
+    background: $purple-dark;
+    .intro__modal-title {
+        font-size: 2.2rem;
+        @include md{
+            font-size: 1.8rem;
+        }
+        display: block;
+        padding-bottom: 3rem;
+        border-bottom: 1px solid rgba(125, 81, 150, 0.2);
+    }
+    .intro__modal-main {
+        font-size: 4.8rem;
+        padding-top: 5.6rem;
+        padding-bottom: 5.9rem;
+    }
+}
+
+.intro__modal-link {
+    display: inline-block;
+    color: white;
+    font-size: 1.6rem;
+    letter-spacing: -0.4px;
+    text-transform: uppercase;
+    border: 3px solid #772f9f;
+    transition: background 0.2s ease-in;
+    padding: 2rem 4rem;
+    cursor: pointer;
+    &:hover {
+        background: #772f9f;
     }
 }
