@@ -4,7 +4,6 @@ const fs = require('fs');
 const HTMLWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const ImageminPlugin = require("imagemin-webpack");
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const PurgecssPlugin = require('purgecss-webpack-plugin')
 
@@ -62,9 +61,6 @@ module.exports = {
     },
     plugins: [
         new CleanWebpackPlugin(),
-        new ImageminPlugin({
-            pngquant: ({quality: [0.5, 0.5]}),
-        }),
         new MiniCssExtractPlugin({
             filename : process.env.NODE_ENV === 'production' ? '[name].[contenthash].css' : '[name].css'
         }),

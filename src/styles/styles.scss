@@ -105,7 +105,7 @@ a {
     left: -100%;
     width: 100%;
     height: 100%;
-    transition: all 0.3s linear;
+    transition: all 0.4s ease-in-out;
     background: $purple-dark;
 }
 .header__nav_active {
@@ -150,20 +150,12 @@ a {
 
 .intro { 
     background: #f0f0f0;
-    background-image: url('../assets/images/header.png');
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
     position: relative;
-    @include xlMid {
-        background-size: contain;
-        background-position: right;
-    }
     &:after {
         @include xl {
             display: block;
             content: '';
-            width: 27.7rem;
+            width: calc(100% - 1500px - (100% - 1500px) / 2);
             height: 100%;
             position: absolute;
             top: 0;
@@ -175,10 +167,27 @@ a {
         }
     }
 }
+// INTRO BACKGROUND
+
+.intro_bg {
+    max-width: 1500px;
+    margin: 0 auto;
+    background-image: url('../assets/images/header.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    @include xlMid {
+        background-size: contain;
+        background-position: right;
+    }
+
+}
 
 .intro__content {
     padding: 22.1rem 0;
 }
+
+// INTRO CONTENT
 
 .intro__modal {
     padding: 6rem 6rem 7.4rem;
@@ -213,7 +222,7 @@ a {
     letter-spacing: -0.4px;
     text-transform: uppercase;
     border: 3px solid #772f9f;
-    transition: background 0.2s ease-in;
+    transition: background 0.2s cubic-bezier(.46,.03,.52,.96);;
     padding: 2rem 4rem;
     cursor: pointer;
     &:hover {
