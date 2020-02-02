@@ -1,3 +1,4 @@
 import 'normalize.css'
 import '../styles/styles.scss'
-import './hamburger.js'
+import './hamburger'
+import './slider'

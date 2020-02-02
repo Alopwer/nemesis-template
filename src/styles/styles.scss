@@ -16,7 +16,7 @@
 }
 
 html {
-    @include fluid-type($screen-sm-min, $screen-xl-min, 8px, 10px)
+    @include fluid-type($screen-sm-min, $screen-xl-min, 9px, 10px)
 }
 
 a {
@@ -210,6 +210,7 @@ a {
     }
     &-main {
         font-size: 4.8rem;
+        @include fluid-type($screen-sm-min, $screen-xl-min, 38px, 48px);
         padding-top: 5rem;
         padding-bottom: 5.9rem;
     }
@@ -252,17 +253,33 @@ a {
     @include md {
         flex-direction: row;
         justify-content: center;
+        max-height: 565px;
+    }
+}
+
+@include md {
+    .news__content :nth-child(2n) {
+        flex-direction: row-reverse;
+    }
+}
+@include xxl {
+    .news__content :nth-child(2) {
+        flex-direction: row;
+    }
+    .news__content :nth-child(3) {
+        flex-direction: row-reverse;
     }
 }
 
 .news__content-img {
+    display: block;
     width: 100%;
     max-width: 360px;
+    height: auto;
     @include xxl {
-        min-width: 375px;
+        min-width: 383px;
         max-height: 565px;
     }
-    height: auto;
 }
 
 .news__item {
@@ -316,5 +333,107 @@ a {
         font-size: 1.6rem;
         padding-top: 4.8rem;
         font-family: 'PlayfairDisplay';
+    }
+}
+
+// CONTENT
+
+.content__container {
+    max-width: 2040px;
+    margin: 0 auto;
+}
+
+.content__slider {
+    max-width: 637px;
+    position: relative;
+}
+
+.slider {
+    &__item {
+        padding: 16.4rem 0 8.4rem;
+        width: 100%;
+        height: auto;
+        background-image: url('../assets/images/content-1.png');
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+        text-align: center;
+        &-btn {
+            margin-top: 6.1rem;
+            display: inline-block;
+            border: none;
+            padding: 2rem 4.1rem 1.8rem 4.2rem;
+            cursor: pointer;
+            background: white;
+            color: black;
+            font-family: 'Raleway';
+            font-size: 1.6rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            border: 3px solid white;
+            transition: all 0.2s ease-in;
+            &:hover {
+                background: #ededed;
+                border: 3px solid black;
+            }
+        }
+    }
+}
+
+.slider__info {
+    position: relative;
+    &-year {
+        overflow: hidden;
+        @include fluid-type($screen-sm-min, $screen-xl-min, 150px, 280px);
+        color: white;
+        opacity: 0.4;
+        font-family: 'PlayfairDisplayBI';
+        font-style: italic;
+        font-weight: bold;
+    }
+    &-text {
+        position: absolute;
+        width: 100%;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+    &-main {
+        font-size: 4.8rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        font-family: 'Raleway';
+    }
+    &-add {
+        font-size: 2.5rem;
+        color: black;
+        opacity: 0.3;
+        font-family: 'PlayfairDisplay';
+        font-style: italic;
+    }
+}
+
+.content__slider-nav {
+    position: absolute;
+    bottom: 5%;
+    right: 50%;
+    transform: translateX(50%);
+    .tns-nav-active {
+        background: $purple-dark;
+    }
+    & > * {
+        path {
+            fill: $purple-dark;
+        }
+        border-radius: 50%;
+    }
+}
+
+.content__slider-controls {
+    right: -20%;
+    bottom: 0;
+    position: absolute;
+    .control-btn {
+        font-size: 100px;
+        cursor: pointer;
     }
 }

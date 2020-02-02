@@ -5,7 +5,7 @@ const HTMLWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-const PurgecssPlugin = require('purgecss-webpack-plugin')
+const PurgecssPlugin = require('purgecss-webpack-plugin');
 
 function generateHtmlPlugins(templateDir) {
     const templateFiles = fs.readdirSync(path.resolve(__dirname, templateDir));
@@ -13,13 +13,13 @@ function generateHtmlPlugins(templateDir) {
       const parts = item.split('.');
       const name = parts[0];
       const extension = parts[1];
-      return new HTMLWebpackPlugin({
-        filename: `${name}.html`,
+    return new HTMLWebpackPlugin({
+        filename: `html/${name}.html`,
         template: path.resolve(__dirname, `${templateDir}/${name}.${extension}`),
         minify: {
             collapseWhitespace: process.env.NODE_ENV === 'production'
         }
-      })
+    })
     })
 }
 const htmlPlugins = generateHtmlPlugins('../src/html')
@@ -45,24 +45,23 @@ const PATHS = {
 }
 
 module.exports = {
-    entry : {
-        main: '~src/js/index.js'
-    },
+    entry : ['babel-polyfill', '~src/js/index.js'],
     output : {
-        filename : '[name].[hash].js',
+        filename : 'js/[name].[hash].js',
         path : path.resolve(__dirname, '../dist')
     },
     resolve: {
         alias: {
             '@images': path.resolve(__dirname, './assets/images'),
             '@fonts': path.resolve(__dirname, './assets/fonts'),
-            '~src': path.resolve(__dirname, '../src')
+            '~src': path.resolve(__dirname, '../src'),
+            '~node': path.resolve(__dirname, '../node_modules')
         }
     },
     plugins: [
         new CleanWebpackPlugin(),
         new MiniCssExtractPlugin({
-            filename : process.env.NODE_ENV === 'production' ? '[name].[contenthash].css' : '[name].css'
+            filename : process.env.NODE_ENV === 'production' ? 'styles/[name].[contenthash].css' : 'styles/[name].css'
         }),
         new PurgecssPlugin({
           paths: glob.sync(`${PATHS.src}/**/*`,  { nodir: true }),
@@ -79,17 +78,25 @@ module.exports = {
         rules: [
             {
                 test: /\.(sc|sa|c)ss$/,
-                use: [MiniCssExtractPlugin.loader, 'css-loader', 
-                {
-                    loader: 'postcss-loader',
-                    options: {
-                        plugins: () => ([
-                            require('autoprefixer'),
-                            require('cssnano')
-                        ])
-                    }
-                }
-                ,'sass-loader']
+                use: [
+                    {
+                        loader: MiniCssExtractPlugin.loader,
+                        options: {
+                            publicPath: '../'
+                        }
+                    }, 
+                        'css-loader', 
+                    {
+                        loader: 'postcss-loader',
+                        options: {
+                            plugins: () => ([
+                                require('autoprefixer'),
+                                require('cssnano')
+                            ])
+                        }
+                    },
+                    'sass-loader'
+                ]
             },
             {
                 test: /\.js$/,
@@ -98,11 +105,15 @@ module.exports = {
             },
             {
                 test: /.(png|svg|jpg|gif)$/,
-                loader: 'file-loader',
-                options: {
-                    name: '[name].[ext]',
-                    outputPath: 'assets/images'
-                }
+                use: [
+                    { 
+                        loader: 'file-loader',
+                        options: {
+                            name: '[name].[ext]',
+                            outputPath: 'assets/images'
+                        },
+                    },
+                ]
             },
             {
                 test: /\.(woff|woff2|eot|ttf|otf)$/,
