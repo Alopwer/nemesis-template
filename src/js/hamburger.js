@@ -1,18 +1,18 @@
-const wrapper = document.querySelector('.header__menu')
-const link = document.querySelectorAll('.header__nav-link') 
+const wrapper = document.querySelector('.header-menu')
+const link = document.querySelectorAll('.header-list__link') 
 
 function menuAction(action) {
-    const nav = document.querySelector('.header__nav')
+    const nav = document.querySelector('.header-nav')
     const body = document.querySelector('body')
-    const menu = document.querySelector('.menu__icon')
+    const menu = document.querySelector('.header-menu__icon')
 
     if (action) {
-        menu.classList.toggle('menu__icon_active')
-        nav.classList.toggle('header__nav_active')
+        menu.classList.toggle('header-menu__icon_active')
+        nav.classList.toggle('header-nav_active')
         body.classList.toggle('lock')
     } else {
-        menu.classList.remove('menu__icon_active')
-        nav.classList.remove('header__nav_active')
+        menu.classList.remove('header-menu__icon_active')
+        nav.classList.remove('header-nav_active')
         body.classList.remove('lock')
     }
 }
