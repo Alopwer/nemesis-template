@@ -270,10 +270,10 @@ a {
 .news-block__img {
     display: block;
     width: 100%;
-    max-width: 360px;
+    max-width: 365px;
     height: auto;
     @include xxl {
-        min-width: 383px;
+        min-width: 375px;
         max-height: 565px;
     }
 }
@@ -337,14 +337,31 @@ a {
 .content-container {
     max-width: 2040px;
     margin: 0 auto;
+    display: grid;
+    justify-items: stretch;
+    grid-template-columns: 100%;
+    grid-template-areas:
+        "intro"
+        "slider"
+        "join"
+        "reader"
+        "collection";
+    @include md {
+        grid-template-columns: 50% 50%;
+        grid-template-areas:
+            "intro  intro"
+            "slider collection"
+            "slider reader"
+            "join   join";
+    }
 }
 
 .content-slider {
-    max-width: 637px;
     position: relative;
 }
 
 .slider {
+    grid-area: slider;
     &-item {
         padding: 16.4rem 0 8.4rem;
         width: 100%;
@@ -417,8 +434,10 @@ a {
         background: $purple-dark;
     }
     & > * {
+        cursor: pointer;
         path {
-            fill: $purple-dark;
+            fill: black;
+            opacity: 0.15;
         }
         border-radius: 50%;
     }
@@ -444,6 +463,7 @@ a {
 }
 
 .content-intro {
+    grid-area: intro;
     background: $purple-dark;
     padding: 2.8rem 3.7rem;
     @include md {
@@ -480,6 +500,7 @@ a {
 }
 
 .content-join {
+    grid-area: join;
     background-image: url('../assets/images/content-3.png');
     background-repeat: no-repeat;
     background-size: cover;
@@ -509,25 +530,31 @@ a {
 }
 
 .content-reader {
+    grid-area: reader;
     position: relative;
+    background: #f0f0f0;
 }
 
 .reader-info {
-    // padding: 7.4rem 9.7rem 5rem;
+    padding: 4.8rem 3rem;
+    @include md {
+        padding: 7.4rem 9.7rem 5rem;
+    }
     .reader-title {
-        position: relative;
+        margin-bottom: 4.2rem;
         text-align: center;
         font-family: 'PlayfairDisplay';
         font-style: italic;
         &__main {
+            position: relative;
             color: $purple-light;
             @include fluid-type($screen-sm-min, $screen-xl-min, 48px, 104px);
         }
         &__add {
             position: absolute;
-            top: 0;
-            right: 0;
-            font-size: 2.5rem;
+            left: 68%;
+            top: -1px;
+            @include fluid-type($screen-sm-min, $screen-xl-min, 15px, 25px);
             color: black;
             opacity: 0.4;
         }
@@ -535,8 +562,21 @@ a {
 }
 
 .reader-btn {
+    text-align: center;
     &__btn {
-
+        padding: 2rem 3.5rem;
+        color: black;
+        text-transform: uppercase;
+        font-family: 'Raleway';
+        font-size: 1.6rem;
+        background: white;
+        border: 3px solid white;
+        transition: all 0.2s ease-in;
+        font-weight: bold;
+        &:hover {
+            border: 3px solid black;
+            background: #f0f0f0;
+        }
     }
 }
 
@@ -547,5 +587,51 @@ a {
     }
     &__image {
 
+    }
+}
+
+.content-collection {
+    grid-area: collection;
+    background: $purple-dark url('../assets/images/content-4.png') no-repeat scroll center;
+    background-size: cover;
+    position: relative;
+}
+
+.content-layer {
+    width: 100%;
+    height: 100%;
+    background-color: rgba(93, 37, 124, 0.85)
+}
+
+.collection-info {
+    // padding: 20rem 0 4.5rem 3.9rem;
+    padding-bottom: 4.5rem;
+    padding-left: 2rem;
+    padding-top: 10rem;
+    @include md {
+        // padding: 37.3rem 28.9rem 4.5rem 3.9rem;
+    }
+    &__title {
+        color: white;
+        @include fluid-type($screen-sm-min, $screen-xl-min, 36px, 48px);
+        text-transform: uppercase;
+        font-weight: bold;
+        font-family: 'Raleway';
+        margin-bottom: 3.7rem;
+    }
+}
+
+.collection-btn {
+    &__btn {
+        padding: 2rem 4.5rem;
+        color: white;
+        text-transform: uppercase;
+        font-family: 'Raleway';
+        font-size: 1.6rem;
+        border: 3px solid $purple-light;
+        transition: all 0.2s ease-in;
+        &:hover {
+            background: $purple-light;
+        }
     }
 }
