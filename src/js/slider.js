@@ -10,7 +10,7 @@ function createSlider() {
         navContainer: '.slider-nav',
         startIndex: 1,
         responsive: {
-            992: {
+            1200: {
                 controls: true
             }
         }
