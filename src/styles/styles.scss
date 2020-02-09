@@ -919,6 +919,7 @@ a {
     flex-direction: column;
     justify-content: center;
     position: relative;
+
     @include lg {
         bottom: 120px;
         margin-bottom: -120px;
@@ -1056,21 +1057,27 @@ a {
 
 .footer-content {
     padding: 5.3rem 0;
+
     @include lg {
         padding: 10.6rem 0;
     }
+
     .footer-slogan {
         padding: 5rem 0;
+
         @include lg {
             padding: 10rem 0;
         }
+
         text-align: center;
         background: #f0f0f0;
+
         &__text {
             color: black;
             font-family: 'Raleway';
             position: relative;
             @include fluid-type($screen-sm-min, $screen-lg-min, 20px, 36px);
+
             &::after {
                 content: '';
                 height: 3px;
@@ -1096,6 +1103,7 @@ a {
     align-items: center;
     justify-content: space-between;
     padding: 4.2rem;
+
     @include lg {
         padding: 8.4rem 0;
         flex-direction: row;
@@ -1116,25 +1124,32 @@ a {
 .footer-menu {
     display: flex;
     flex-direction: column;
+
     @include lg {
         flex-direction: row;
         text-align: left;
     }
+
     list-style: none;
     text-align: center;
+
     &__item {
         padding-top: 4rem;
+
         @include lg {
             padding-top: 0;
             padding-left: 2rem;
         }
+
         &::after {
             content: '';
             display: none;
-            width:  9rem;
+            width: 9rem;
+
             @include xl {
-                width:  11rem;
+                width: 11rem;
             }
+
             height: 2px;
             position: relative;
             top: -30%;
@@ -1142,15 +1157,18 @@ a {
             background: #000;
             opacity: 0.1;
             margin-left: 2rem;
+
             @include lg {
                 display: inline-block;
             }
         }
     }
+
     &__link {
         color: black;
         font-family: 'Raleway';
         font-size: 1.8rem;
+
         &:hover {
             color: $purple-dark
         }
@@ -1162,9 +1180,11 @@ a {
     justify-content: space-between;
     align-items: center;
     padding: 3.5rem 0;
+
     @include lg {
         padding: 6.5rem 0;
     }
+
     &__text {
         opacity: 0.3;
         color: black;
@@ -1177,12 +1197,15 @@ a {
 .footer-social {
     display: flex;
     list-style: none;
+
     &__item {
         margin-left: 4rem;
         cursor: pointer;
+
         path {
             fill: rgb(199, 199, 199)
         }
+
         &:hover path {
             fill: $purple-dark
         }
